@@ -11,12 +11,13 @@ class ClientController extends Controller
     //
      public function index()
     {
-        return view('client.index');
+        $clients = Client::all();
+        return view('clients.index', compact('clients'));
     }
 
     public function create()
     {
-        return view('client.create');
+        return view('clients.create');
     }
 
     public function store(Request $request)
@@ -48,4 +49,10 @@ class ClientController extends Controller
 
         return redirect()->route('clients.index')->with('success', 'User and client created successfully.');
     }
+
+    public function edit(Client $client)
+    {
+        return view('client.edit', compact('client'));
+    }
+
 }
